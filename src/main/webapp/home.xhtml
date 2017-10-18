@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet</title>
+    </h:head>
+    <h:body>
+        Conta : <h:outputLabel value="#{serviceBean.conta.numeroConta}"> </h:outputLabel> <br/><br/>
+        Agencia : <h:outputLabel value="#{serviceBean.conta.agencia}"> </h:outputLabel> <br/><br/>
+        Saldo : <h:outputLabel value="#{serviceBean.conta.saldo}"> </h:outputLabel> <br/><br/>
+        Senha : <h:outputLabel value="#{serviceBean.conta.senha}"> </h:outputLabel> <br/><br/>
+        
+        <h:form>
+            <h:inputSecret class="form-control" required="true" binding="#{novaSenha}"/>
+            <h:commandButton action="#{serviceBean.auterarSenha(novaSenha.value)}" value="Auterar Senha" class="btn btn-default"/>
+        </h:form>
+
+        <br></br>
+        <br></br>
+
+        <h:form>
+            <h:inputText class="form-control" required="true" binding="#{valorDeposito}"/>
+            <h:commandButton action="#{serviceBean.depositar(valorDeposito.value)}" value="Depositar" class="btn btn-default"/>
+        </h:form>
+
+        <br></br>
+        <br></br>
+
+        <h:form>
+            <h:inputText class="form-control" required="true" binding="#{valorSaque}"/>
+            <h:commandButton action="#{serviceBean.sacar(valorSaque.value)}" value="Sacar" class="btn btn-default"/>
+        </h:form>
+
+        <h:form>
+            <h:commandButton action="#{serviceBean.remover()}" value="Remover Conta" class="btn btn-default"/>
+        </h:form>
+    </h:body>
+</html>
+

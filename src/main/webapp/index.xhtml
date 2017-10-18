@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
+    </head>
+    <body class="container">
+        <h2>Sistema Bancario</h2>
+        <div>
+            <div class="row">
+                <div class="col-md-4" style=" border: 2px solid black; 
+                     padding: 2%">
+                    <h:form>
+                        <label>Numero do seu CPF :</label>
+                        <h:inputText class="form-control" binding="#{cpf}"/>
+                        <label>Senha:</label>
+                        <h:inputSecret class="form-control" binding="#{senha}"/>
+                        <h:commandButton action="#{serviceBean.autenticar(cpf.value, senha.value)}" value="entrar" class="btn btn-default"/>
+                        <span class="glyphicon glyphicon-save"></span><br/>
+                        <h:commandLink  value="Cadastrar Novo Conta" action="cadastrarCliente?faces-redirect=true"></h:commandLink>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

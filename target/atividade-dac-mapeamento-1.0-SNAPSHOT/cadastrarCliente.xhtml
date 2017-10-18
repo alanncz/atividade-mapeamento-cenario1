@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h3> Cadastro de nova Conta </h3>
+
+        <h:form>
+            <label>Numero do seu CPF :</label>
+            <h:inputText class="form-control" binding="#{cpf}"/> <br/><br/>
+            <label>Numero do seu RG :</label>
+            <h:inputText class="form-control" binding="#{rg}"/><br/><br/>
+            <label>Numero do seu Telefone :</label>
+            <h:inputText class="form-control" binding="#{telefone}"/><br/><br/>
+            <label>Bairro :</label>
+            <h:inputText class="form-control" binding="#{bairro}"/><br/><br/>
+            <label>Cidade :</label>
+            <h:inputText class="form-control" binding="#{cidade}"/><br/><br/>
+            <label>Senha :</label>
+            <h:inputSecret class="form-control" binding="#{senha}"/><br/><br/>
+            <h:commandButton action="#{serviceBean.cadastrar(cpf.value,
+                                       rg.value, telefone.value,
+                                       bairro.value, cidade.value, senha.value)}"
+                             value="Cadastrar" class="btn btn-default"/>
+        </h:form>
+    </h:body>
+</html>
+
