@@ -1,0 +1,21 @@
+version: '2.1'
+services:  
+  postgres:
+    healthcheck:
+      test: "exit 0"
+    container_name: banco
+    build: ./postgres
+    image: image/banco
+    ports:
+     - "5433:5432"
+  webson:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    container_name: atividade
+    build: .
+    image: image/atividade
+    ports:
+     - "8081:8080"
+    links:
+     - "postgres:bancoHost"

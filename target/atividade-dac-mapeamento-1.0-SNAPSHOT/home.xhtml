@@ -10,7 +10,7 @@
         Agencia : <h:outputLabel value="#{serviceBean.conta.agencia}"> </h:outputLabel> <br/><br/>
         Saldo : <h:outputLabel value="#{serviceBean.conta.saldo}"> </h:outputLabel> <br/><br/>
         Senha : <h:outputLabel value="#{serviceBean.conta.senha}"> </h:outputLabel> <br/><br/>
-        
+
         <h:form>
             <h:inputSecret class="form-control" required="true" binding="#{novaSenha}"/>
             <h:commandButton action="#{serviceBean.auterarSenha(novaSenha.value)}" value="Auterar Senha" class="btn btn-default"/>
@@ -34,7 +34,13 @@
 
         <h:form>
             <h:commandButton action="#{serviceBean.remover()}" value="Remover Conta" class="btn btn-default"/>
+            <br></br>
+            <h:commandLink  value="Gerar extrato da Conta" action="extrato?faces-redirect=true"></h:commandLink>
+            <br></br>
+            <h:commandLink  value="Sair" action="index?faces-redirect=true"></h:commandLink>
         </h:form>
+
+
     </h:body>
 </html>
 

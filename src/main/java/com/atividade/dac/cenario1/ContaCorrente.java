@@ -12,26 +12,30 @@ import javax.persistence.Entity;
  *
  * @author alann
  */
-
 @Entity
 @DiscriminatorValue(value = "CC")
 public class ContaCorrente extends Conta {
 
-    public ContaCorrente() {}
+    public ContaCorrente() {
+    }
 
-    public ContaCorrente(String numeroConta,String senha) {
+    public ContaCorrente(String numeroConta, String senha) {
         super(numeroConta, 1, senha);
     }
-    
+
     @Override
     public void creditar(float valor) {
         this.setSaldo(this.getSaldo() + valor);
+        addTransacao("Deposito", valor);
     }
 
     @Override
-    public void debitar(float valor) {
-        float debito = (float) (valor + 0.75);
-        this.setSaldo(this.getSaldo() - debito);
+    public void debitar(float valor){
+        if (valor > 0.75 & valor <= this.getSaldo()) {
+            float debito = (float) (valor + 0.75);
+            this.setSaldo(this.getSaldo() - debito);
+            addTransacao("Retirada", valor);
+        }
     }
-    
+
 }

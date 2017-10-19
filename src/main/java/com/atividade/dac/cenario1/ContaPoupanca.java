@@ -27,11 +27,16 @@ public class ContaPoupanca extends Conta{
     public void creditar(float valor) {
         float credito = (float) (valor + 0.56);
         this.setSaldo(this.getSaldo() + credito);
+        addTransacao("Deposito", valor);
     }
 
     @Override
     public void debitar(float valor) {
-        this.setSaldo(this.getSaldo() - valor);
+        
+        if (valor > 0 & valor <= this.getSaldo()){
+            this.setSaldo(this.getSaldo() - valor);
+            addTransacao("Retirada", valor);
+        }
     }
     
 }

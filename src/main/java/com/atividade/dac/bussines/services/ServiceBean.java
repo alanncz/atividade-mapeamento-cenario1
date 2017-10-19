@@ -9,6 +9,7 @@ import com.atividade.dac.bussines.ClienteBean;
 import com.atividade.dac.cenario1.Cliente;
 import com.atividade.dac.cenario1.Conta;
 import com.atividade.dac.cenario1.ContaCorrente;
+import com.atividade.dac.cenario1.ContaPoupanca;
 import com.atividade.dac.cenario1.Endereco;
 import java.io.Serializable;
 import java.util.Date;
@@ -54,12 +55,17 @@ public class ServiceBean implements Serializable {
         return this.bean.autentucar(cpf, senha) ? "home?faces-redirect=true": null;
         
     }
+    
+    public Conta criarConta(String tipoConta, String cpf, String senha){
+        if (tipoConta.compareTo("cc") == 0) return new ContaCorrente(cpf, senha);
+        else return new ContaPoupanca(cpf, senha);
+    }
 
     public String cadastrar(String cpf, String rg, String telefone, String bairro,
-            String cidade, String senha) {
+            String cidade, String senha, String tipoConta) {
         Date data = new Date();
         Endereco endereco = new Endereco(bairro, cidade);
-        Conta novaConta = new ContaCorrente(cpf,senha);
+        Conta novaConta = criarConta(tipoConta,cpf, senha);
         Cliente novoCliente = new Cliente(cpf,rg,data,telefone, endereco, novaConta);
         bean.cadastrar(novoCliente);
         return "index?faces-redirect=true";

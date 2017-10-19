@@ -6,6 +6,10 @@
 package com.atividade.dac.cenario1;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
@@ -15,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -39,6 +44,8 @@ public abstract class Conta implements Serializable {
     private int digitoConta;
     private String senha;
     private float saldo;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Transacao> transacoes;
     
     public Conta(){}
 
@@ -49,6 +56,15 @@ public abstract class Conta implements Serializable {
         this.digitoConta = digitoConta;
         this.senha = senha;
         this.saldo = 0;
+        transacoes = new ArrayList();
+    }
+
+    public List<Transacao> getTransacoes() {
+        return transacoes;
+    }
+
+    public void setTransacoes(List<Transacao> transacoes) {
+        this.transacoes = transacoes;
     }
 
     public int getCodigo() {
@@ -110,4 +126,10 @@ public abstract class Conta implements Serializable {
     public abstract void creditar(float valor);
     
     public abstract void debitar(float valor);
+    
+    public void addTransacao(String tipo, float valor){
+        Date data = new Date();
+        Transacao transacao = new Transacao(tipo, data, valor);
+        this.transacoes.add(transacao);
+    }
 }
